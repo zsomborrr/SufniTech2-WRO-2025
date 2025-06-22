@@ -2,10 +2,10 @@ import time
 import RPi.GPIO as GPIO
 
 # Pins, IN1 - forward, IN2 - backward, BUTTON - start/stop, SERVO - servo control
-BUTTON = 17
-IN1 = 27
-IN2 = 22
-SERVO = 5
+BUTTON = 
+IN1 = 
+IN2 = 
+SERVO = 
         
 # GPIO setup
 GPIO.setmode(GPIO.BCM)
@@ -13,6 +13,17 @@ GPIO.setup(IN1, GPIO.OUT)
 GPIO.setup(IN2, GPIO.OUT)
 GPIO.setup(BUTTON, GPIO.IN)
 GPIO.setup(SERVO, GPIO.OUT)
+
+# LED setup
+S0 = 17
+S1 = 27
+S2 = 22
+S3 = 23
+OUT = 24
+LED = 18
+
+GPIO.setup([S0, S1, S2, S3, LED], GPIO.OUT)
+GPIO.setup(OUT, GPIO.IN)
         
 # Servo setup here later
 
@@ -81,6 +92,8 @@ try:
         red, green, blue = read_colors()
         color = detect_color(red, green, blue)
         print(f"Detected Color: {color}")
+        time.sleep(1)
+    finally:
         time.sleep(1)
 
 # Button setup
