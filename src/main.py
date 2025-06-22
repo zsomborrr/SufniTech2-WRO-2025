@@ -1,17 +1,6 @@
 import time
 import RPi.GPIO as GPIO
 
-# Start and stop function for later
-def start():
-    # Automatic driving function
-    pass
-
-def stop():
-    GPIO.output(IN1, GPIO.LOW)
-    GPIO.output(IN2, GPIO.LOW)
-    pwm.changeDutyCycle(0)
-    pass
-
 # Pins, IN1 - forward, IN2 - backward, BUTTON - start/stop, SERVO - servo control
 # BUTTON = 
 # IN1 = 
