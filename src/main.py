@@ -8,7 +8,7 @@ import RPi.GPIO as GPIO
 # SERVO = 
         
 # GPIO setup
-# GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BCM)
 # GPIO.setup(IN1, GPIO.OUT)
 # GPIO.setup(IN2, GPIO.OUT)
 # GPIO.setup(BUTTON, GPIO.IN)
