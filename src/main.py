@@ -2,10 +2,10 @@ import time
 import RPi.GPIO as GPIO
 
 # Pins, IN1 - forward, IN2 - backward, BUTTON - start/stop, SERVO - servo control
-BUTTON = 
-IN1 = 
-IN2 = 
-SERVO = 
+# BUTTON = 
+# IN1 = 
+# IN2 = 
+# SERVO = 
         
 # GPIO setup
 GPIO.setmode(GPIO.BCM)
