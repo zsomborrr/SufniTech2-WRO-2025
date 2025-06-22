@@ -1,6 +1,17 @@
 import time
 import RPi.GPIO as GPIO
 
+# Start and stop function for later
+def start():
+    # Automatic driving function
+    pass
+
+def stop():
+    GPIO.output(IN1, GPIO.LOW)
+    GPIO.output(IN2, GPIO.LOW)
+    pwm.changeDutyCycle(0)
+    pass
+
 # Pins, IN1 - forward, IN2 - backward, BUTTON - start/stop, SERVO - servo control
 # BUTTON = 
 # IN1 = 
@@ -27,49 +38,48 @@ GPIO.setup(OUT, GPIO.IN)
         
 # Servo setup here later
 
-def start():
-    # Automatic driving function
-    pass
+# TCS3200 Setup
+S0 = 17
+S1 = 27
+S2 = 22
+S3 = 23
+OUT = 24
+LED = 18
 
-def stop():
-    GPIO.output(IN1, GPIO.LOW)
-    GPIO.output(IN2, GPIO.LOW)
-    pwm.changeDutyCycle(0)
-    pass
+GPIO.setmode(GPIO.BCM)
+GPIO.setup([S0, S1, S2, S3, LED], GPIO.OUT)
+GPIO.setup(OUT, GPIO.IN)
 
-
+# Set frequency scaling to 100%
 GPIO.output(S0, GPIO.HIGH)
 GPIO.output(S1, GPIO.HIGH)
-
 GPIO.output(LED, GPIO.HIGH)
 
-def set_color_filter(s2, s3):
+def set_filter(s2, s3):
     GPIO.output(S2, s2)
     GPIO.output(S3, s3)
 
 def read_frequency():
-    start = time.time()
     pulses = 10
+    start = time.time()
     for _ in range(pulses):
         GPIO.wait_for_edge(OUT, GPIO.FALLING)
     duration = time.time() - start
-    if duration == 0:
-        return 0
-    return pulses / duration
+    return pulses / duration if duration > 0 else 0
 
 def read_colors():
     # Red
-    set_color_filter(GPIO.LOW, GPIO.LOW)
+    set_filter(GPIO.LOW, GPIO.LOW)
     time.sleep(0.1)
     red = read_frequency()
 
     # Green
-    set_color_filter(GPIO.HIGH, GPIO.HIGH)
+    set_filter(GPIO.HIGH, GPIO.HIGH)
     time.sleep(0.1)
     green = read_frequency()
 
     # Blue
-    set_color_filter(GPIO.LOW, GPIO.HIGH)
+    set_filter(GPIO.LOW, GPIO.HIGH)
     time.sleep(0.1)
     blue = read_frequency()
 
@@ -77,7 +87,6 @@ def read_colors():
 
 def detect_color(red, green, blue):
     print(f"R: {red:.2f}  G: {green:.2f}  B: {blue:.2f}")
-
     if red < green and red < blue:
         return "Red"
     elif green < red and green < blue:
@@ -93,18 +102,6 @@ try:
         color = detect_color(red, green, blue)
         print(f"Detected Color: {color}")
         time.sleep(1)
-    finally:
-        time.sleep(1)
 
-# Button setup
-try:
-    while True:
-       if GPIO.input(BUTTON) == GPIO.HIGH:
-           start()
-           while GPIO.input(BUTTON) == GPIO.HIGH:  
-               time.sleep(0.1)
-       else:
-           stop()
-       time.sleep(0.1)
 except KeyboardInterrupt:
     GPIO.cleanup()
