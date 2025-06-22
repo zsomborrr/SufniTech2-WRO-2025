@@ -8,11 +8,11 @@ import RPi.GPIO as GPIO
 # SERVO = 
         
 # GPIO setup
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(IN1, GPIO.OUT)
-GPIO.setup(IN2, GPIO.OUT)
-GPIO.setup(BUTTON, GPIO.IN)
-GPIO.setup(SERVO, GPIO.OUT)
+# GPIO.setmode(GPIO.BCM)
+# GPIO.setup(IN1, GPIO.OUT)
+# GPIO.setup(IN2, GPIO.OUT)
+# GPIO.setup(BUTTON, GPIO.IN)
+# GPIO.setup(SERVO, GPIO.OUT)
 
 # LED setup
 S0 = 17
