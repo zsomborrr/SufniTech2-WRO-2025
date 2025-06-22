@@ -2,7 +2,7 @@
 
 Welcome to the official repository of **SufniTech2-WRO-2025** for the **World Robot Olympiad 2025**.
 
-# Files
+# About us
 
 We are a beginner robotics team from **Nyíregyháza, Hungary**, we decided to enter the competition due to our mentor's advice though we’ve little experience. Our team consists of:
 
