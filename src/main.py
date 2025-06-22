@@ -16,7 +16,6 @@ import keyboard
 # GPIO.setup(SERVO, GPIO.OUT)
         
 # Servo setup here later
-    pass
 
 # TCS3200 setup
 S0 = 17
