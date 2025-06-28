@@ -89,7 +89,7 @@ def is_switch_on():
 
 # Main Loop 
 try:
-  print("🟢 Ready. Toggle switch ON to start.")
+  print("Ready. Toggle switch ON to start.")
   robot_active = False
   last_switch_state = is_switch_on()
 
@@ -104,7 +104,7 @@ try:
         time.sleep(0.3)
         servo.ChangeDutyCycle(0)
       else:
-        print("🔘 Switch OFF — Robot stopped.")
+        print("Switch OFF — Robot stopped.")
         motor_stop()
         servo.ChangeDutyCycle(BASE_DUTY)
         time.sleep(0.3)
@@ -116,7 +116,7 @@ try:
 
       front_str = f"{dist_front:.1f} cm" if dist_front else "--"
       left_str = f"{dist_left:.1f} cm" if dist_left else "--"
-      print(f"📏 Front: {front_str} | Left: {left_str}")
+      print(f"Front: {front_str} | Left: {left_str}")
 
       if dist_front and dist_front < FRONT_OBSTACLE_THRESHOLD:
         if dist_left and dist_left > LEFT_CLEAR_THRESHOLD:
@@ -138,7 +138,7 @@ try:
           print("⬆️ Moving FORWARD")
 
     else:
-      print("🕹️ Waiting for switch ON...")
+      print("Waiting for switch ON...")
       time.sleep(0.5)
 
     time.sleep(LOOP_DELAY)
